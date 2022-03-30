@@ -59,7 +59,7 @@ export default {
      */
     handleSearch() {
       // 1. 使用 params 参数
-      this.$router.push({name: 'search', params: {keyword: this.keyword}})
+      this.$router.push({name: 'search', params: {keyword: this.keyword}},()=>{},()=>{})
       // 不传递 params 参数
       // this.$router.push({name: 'search', params: {keyword: '' || undefined}})
 
