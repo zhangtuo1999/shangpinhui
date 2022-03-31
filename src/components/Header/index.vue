@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import {reqCategoryList} from "@/api";
+import {getCategoryList} from "@/api";
 
 export default {
   name: "Header",
@@ -56,9 +56,7 @@ export default {
     }
   },
   mounted() {
-    reqCategoryList().then(response => {
-      console.log(response.data)
-    })
+
   },
   methods: {
     /**
