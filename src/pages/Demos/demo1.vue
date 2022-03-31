@@ -1,3 +1,4 @@
+<!--suppress JSValidateTypes -->
 <template>
   <div>
     请输入：<input type="text" v-model="inputText"/>
@@ -5,13 +6,10 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import debounce from 'lodash/debounce.js'
 
 export default {
   name: "Demo1",
-  created() {
-    this.debounceHandleChange = _.debounce(this.handleChange, 500)
-  },
   data() {
     return {
       inputText: ''
@@ -19,13 +17,13 @@ export default {
   },
   watch: {
     inputText() {
-      this.debounceHandleChange()
+      this.handleChange()
     }
   },
   methods: {
-    handleChange() {
+    handleChange: debounce(function () {
       console.log(this.inputText)
-    }
+    }, 500)
   }
 }
 </script>
