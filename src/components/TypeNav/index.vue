@@ -13,20 +13,26 @@
         <a href="###">秒杀</a>
       </nav>
       <div class="sort">
-        <div class="all-sort-list2">
+        <div class="all-sort-list2" @click.prevent="handleClick">
           <div class="item bo" v-for="c1 in categoryList" :key="c1['categoryId']">
             <h3>
-              <a href="">{{ c1['categoryName'] }}</a>
+              <a :data-categoryName="c1['categoryName']" :data-category1Id="c1['categoryId']" href="">
+                {{ c1['categoryName'] }}
+              </a>
             </h3>
             <div class="item-list clearfix">
               <div class="subitem" v-for="c2 in c1['categoryChild']" :key="c2['categoryId']">
                 <dl class="fore">
                   <dt>
-                    <a href="">{{ c2['categoryName'] }}</a>
+                    <a :data-categoryName="c2['categoryName']" :data-category2Id="c2['categoryId']" href="">
+                      {{ c2['categoryName'] }}
+                    </a>
                   </dt>
                   <dd>
                     <em v-for="c3 in c2['categoryChild']" :key="c3['categoryId']">
-                      <a href="">{{ c3['categoryName'] }}</a>
+                      <a :data-categoryName="c3['categoryName']" :data-category3Id="c3['categoryId']" href="">
+                        {{ c3['categoryName'] }}
+                      </a>
                     </em>
                   </dd>
                 </dl>
@@ -53,6 +59,24 @@ export default {
   methods: {
     getData() {
       this.$store.dispatch('home/getCategoryList')
+    },
+    /**
+     * 路由跳转，实现方式：事件委派+编程式路由导航+HTML自定义属性
+     * @param event
+     */
+    handleClick(event) {
+      const {categoryname, category1id, category2id, category3id} = event.target.dataset
+      let query = {categoryName: categoryname}
+      if (categoryname) {
+        if (category1id) {
+          query.category1Id = category1id
+        } else if (category2id) {
+          query.category2Id = category2id
+        } else {
+          query.category2Id = category3id
+        }
+      }
+      this.$router.push({name: 'search', query})
     }
   },
 }
