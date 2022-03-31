@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import {reqCategoryList} from "@/api";
+
 export default {
   name: "Header",
   data() {
@@ -53,13 +55,20 @@ export default {
       keyword: ''
     }
   },
+  mounted() {
+    reqCategoryList().then(response => {
+      console.log(response.data)
+    })
+  },
   methods: {
     /**
      * 跳转到搜索页
      */
     handleSearch() {
       // 1. 使用 params 参数
-      this.$router.push({name: 'search', params: {keyword: this.keyword}},()=>{},()=>{})
+      this.$router.push({name: 'search', params: {keyword: this.keyword}}, () => {
+      }, () => {
+      })
       // 不传递 params 参数
       // this.$router.push({name: 'search', params: {keyword: '' || undefined}})
 
