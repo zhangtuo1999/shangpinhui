@@ -38,6 +38,8 @@ import Home from "@/pages/Home";
 import Search from "@/pages/Search";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import Demo1 from "@/pages/Demos/demo1";
+import Demo2 from "@/pages/Demos/demo2";
 
 export default new VueRouter({
     routes: [
@@ -79,6 +81,14 @@ export default new VueRouter({
             path: '/register',
             component: Register,
             meta: {showFooter: false}
-        }
+        },
+        {
+            path: '/demo1',
+            component: Demo1
+        },
+        {
+            path: '/demo2',
+            component: Demo2
+        },
     ]
 })
