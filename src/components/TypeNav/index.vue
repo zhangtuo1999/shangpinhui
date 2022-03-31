@@ -174,6 +174,10 @@ export default {
             }
           }
         }
+
+        .item:hover {
+          background: skyblue;
+        }
       }
     }
   }
