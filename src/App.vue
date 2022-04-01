@@ -13,7 +13,10 @@ import Footer from "@/components/Footer";
 export default {
   name: 'App',
   components: {
-    Header,Footer
+    Header, Footer
+  },
+  mounted() {
+    this.$store.dispatch('home/getCategoryList')
   }
 }
 </script>

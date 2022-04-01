@@ -1,6 +1,6 @@
 <template>
   <div class="type-nav">
-    <div class="container">
+    <div class="container" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
       <h2 class="all">全部商品分类</h2>
       <nav class="nav">
         <a href="###">服装城</a>
@@ -12,35 +12,37 @@
         <a href="###">有趣</a>
         <a href="###">秒杀</a>
       </nav>
-      <div class="sort">
-        <div class="all-sort-list2" @click.prevent="handleClick">
-          <div class="item bo" v-for="c1 in categoryList" :key="c1['categoryId']">
-            <h3>
-              <a :data-categoryName="c1['categoryName']" :data-category1Id="c1['categoryId']" href="">
-                {{ c1['categoryName'] }}
-              </a>
-            </h3>
-            <div class="item-list clearfix">
-              <div class="subitem" v-for="c2 in c1['categoryChild']" :key="c2['categoryId']">
-                <dl class="fore">
-                  <dt>
-                    <a :data-categoryName="c2['categoryName']" :data-category2Id="c2['categoryId']" href="">
-                      {{ c2['categoryName'] }}
-                    </a>
-                  </dt>
-                  <dd>
-                    <em v-for="c3 in c2['categoryChild']" :key="c3['categoryId']">
-                      <a :data-categoryName="c3['categoryName']" :data-category3Id="c3['categoryId']" href="">
-                        {{ c3['categoryName'] }}
+      <transition name="sort">
+        <div class="sort" v-show="show">
+          <div class="all-sort-list2" @click.prevent="handleClick">
+            <div class="item bo" v-for="c1 in categoryList" :key="c1['categoryId']">
+              <h3>
+                <a :data-categoryName="c1['categoryName']" :data-category1Id="c1['categoryId']" href="">
+                  {{ c1['categoryName'] }}
+                </a>
+              </h3>
+              <div class="item-list clearfix">
+                <div class="subitem" v-for="c2 in c1['categoryChild']" :key="c2['categoryId']">
+                  <dl class="fore">
+                    <dt>
+                      <a :data-categoryName="c2['categoryName']" :data-category2Id="c2['categoryId']" href="">
+                        {{ c2['categoryName'] }}
                       </a>
-                    </em>
-                  </dd>
-                </dl>
+                    </dt>
+                    <dd>
+                      <em v-for="c3 in c2['categoryChild']" :key="c3['categoryId']">
+                        <a :data-categoryName="c3['categoryName']" :data-category3Id="c3['categoryId']" href="">
+                          {{ c3['categoryName'] }}
+                        </a>
+                      </em>
+                    </dd>
+                  </dl>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -50,16 +52,21 @@ import {mapState} from 'vuex'
 
 export default {
   name: "TypeNav",
+  data() {
+    return {
+      show: true
+    }
+  },
   computed: {
-    ...mapState('home', ['categoryList'])
+    ...mapState('home', ['categoryList']),
+    isHome() {
+      return this.$route.path === '/home'
+    }
   },
   mounted() {
-    this.getData()
+    this.show = this.isHome
   },
   methods: {
-    getData() {
-      this.$store.dispatch('home/getCategoryList')
-    },
     /**
      * 路由跳转，实现方式：事件委派+编程式路由导航+HTML自定义属性
      * @param event
@@ -76,7 +83,18 @@ export default {
           query.category2Id = category3id
         }
       }
-      this.$router.push({name: 'search', query})
+      const params = this.$route.params
+      this.$router.push({name: 'search', query, params})
+    },
+    handleMouseEnter() {
+      if (this.isHome)
+        return
+      this.show = true
+    },
+    handleMouseLeave() {
+      if (this.isHome)
+        return
+      this.show = false
     }
   },
 }
@@ -203,6 +221,22 @@ export default {
           background: skyblue;
         }
       }
+    }
+
+    // 过渡动画
+    // 过渡动画开始状态（进入）
+    .sort-enter {
+      height: 0;
+    }
+
+    // 过度动画结束状态（进入）
+    .sort-enter-to {
+      height: 461px;
+    }
+
+    // 定义动画时间、速率
+    .sort-enter-active {
+      transition: all 0.2s linear;
     }
   }
 }

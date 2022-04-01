@@ -9,8 +9,6 @@
             <span>请</span>
             <router-link to="/login">登录</router-link>
             <router-link class="register" to="/register">免费注册</router-link>
-            <!--            <a href="###">登录</a>-->
-            <!--            <a href="###" class="register">免费注册</a>-->
           </p>
         </div>
         <div class="typeList">
@@ -31,9 +29,6 @@
         <router-link class="logo" title="尚品汇" to="/home">
           <img src="./images/logo.png" alt="">
         </router-link>
-        <!--        <a class="logo" title="尚品汇" href="###" target="_blank">-->
-        <!--          <img src="./images/logo.png" alt="">-->
-        <!--        </a>-->
       </h1>
       <div class="searchArea">
         <form action="###" class="searchForm">
@@ -46,7 +41,6 @@
 </template>
 
 <script>
-import {getCategoryList} from "@/api";
 
 export default {
   name: "Header",
@@ -63,15 +57,8 @@ export default {
      * 跳转到搜索页
      */
     handleSearch() {
-      // 1. 使用 params 参数
-      this.$router.push({name: 'search', params: {keyword: this.keyword}}, () => {
-      }, () => {
-      })
-      // 不传递 params 参数
-      // this.$router.push({name: 'search', params: {keyword: '' || undefined}})
-
-      // 2. 使用 query 参数
-      // this.$router.push({name: 'search', query: {keyword: this.keyword}})
+      const query = this.$route.query
+      this.$router.push({name: 'search', query, params: {keyword: this.keyword || undefined}})
     }
   }
 }
