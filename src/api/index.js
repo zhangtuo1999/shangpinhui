@@ -20,3 +20,10 @@ export const getBannerList = () => {
     })
 }
 
+export const getFloorList = () => {
+    return requestMock({
+        url: '/floor',
+        method: 'get'
+    })
+}
+

@@ -2,29 +2,11 @@
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">家用电器</h3>
+        <h3 class="fl">{{ list.name }}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
-            <li class="active">
+            <li class="active" v-for="(item,index) in list['navList']" :key="index">
               <a href="#tab1" data-toggle="tab">热门</a>
-            </li>
-            <li>
-              <a href="#tab2" data-toggle="tab">大家电</a>
-            </li>
-            <li>
-              <a href="#tab3" data-toggle="tab">生活电器</a>
-            </li>
-            <li>
-              <a href="#tab4" data-toggle="tab">厨房电器</a>
-            </li>
-            <li>
-              <a href="#tab5" data-toggle="tab">应季电器</a>
-            </li>
-            <li>
-              <a href="#tab6" data-toggle="tab">空气/净水</a>
-            </li>
-            <li>
-              <a href="#tab7" data-toggle="tab">高端电器</a>
             </li>
           </ul>
         </div>
@@ -34,31 +16,21 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li>节能补贴</li>
-                <li>4K电视</li>
-                <li>空气净化器</li>
-                <li>IH电饭煲</li>
-                <li>滚筒洗衣机</li>
-                <li>电热水器</li>
+                <li v-for="(item,index) in list.keywords" :key="index">{{ item }}</li>
               </ul>
-              <img src="./images/floor-1-1.png"/>
+              <!--TODO:这里的图片地址是./开头，item中的地址是/开头。./开头可以用 /开头没法用-->
+              <img src="./images/floor-1-1.png" alt="pic"/>
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" id="floor1Swiper">
+              <div class="swiper-container" id="floor1Swiper" ref='mySwiper'>
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
+                  <div class="swiper-slide" v-for="item in list['carouselList']" :key="item.id">
+                    <!--TODO -->
                     <img src="./images/floor-1-b01.png">
                   </div>
-<!--                  <div class="swiper-slide">-->
-<!--                    <img src="./images/floor-1-b02.png">-->
-<!--                  </div>-->
-<!--                  <div class="swiper-slide">-->
-<!--                    <img src="./images/floor-1-b03.png">-->
-<!--                  </div>-->
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
-
                 <!-- 如果需要导航按钮 -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -93,8 +65,25 @@
 </template>
 
 <script>
+import Swiper from "swiper";
+import 'swiper/css/swiper.css'
+
 export default {
-  name: "Floor"
+  name: "Floor",
+  props: ['list'],
+  mounted() {
+    new Swiper(this.$refs.mySwiper, {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
+    })
+  }
 }
 </script>
 
