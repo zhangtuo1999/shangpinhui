@@ -6,7 +6,7 @@
         <div class="fr">
           <ul class="nav-tabs clearfix">
             <li class="active" v-for="(item,index) in list['navList']" :key="index">
-              <a href="#tab1" data-toggle="tab">热门</a>
+              <a :href="item.url" data-toggle="tab">{{ item.text }}</a>
             </li>
           </ul>
         </div>
@@ -16,17 +16,17 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li v-for="(item,index) in list.keywords" :key="index">{{ item }}</li>
+                <li v-for="(keyword,index) in list.keywords" :key="index">{{ keyword }}</li>
               </ul>
               <!--TODO:这里的图片地址是./开头，item中的地址是/开头。./开头可以用 /开头没法用-->
-              <img src="./images/floor-1-1.png" alt="pic"/>
+              <img :src="list['imgUrl']"/>
             </div>
             <div class="floorBanner">
               <div class="swiper-container" id="floor1Swiper" ref='mySwiper'>
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide" v-for="item in list['carouselList']" :key="item.id">
+                  <div class="swiper-slide" v-for="carousel in list['carouselList']" :key="carousel.id">
                     <!--TODO -->
-                    <img src="./images/floor-1-b01.png">
+                    <img :src="carousel['imgUrl']">
                   </div>
                 </div>
                 <!-- 如果需要分页器 -->
@@ -39,22 +39,22 @@
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-2.png"/>
+                <img :src="list['recommendList'][0]"/>
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-3.png"/>
+                <img :src="list['recommendList'][1]"/>
               </div>
             </div>
             <div class="split center">
-              <img src="./images/floor-1-4.png"/>
+              <img :src="list['bigImg']"/>
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-5.png"/>
+                <img :src="list['recommendList'][2]"/>
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-6.png"/>
+                <img :src="list['recommendList'][3]"/>
               </div>
             </div>
           </div>
@@ -72,6 +72,7 @@ export default {
   name: "Floor",
   props: ['list'],
   mounted() {
+    console.log('list', this.list)
     new Swiper(this.$refs.mySwiper, {
       loop: true,
       pagination: {

@@ -5,7 +5,7 @@
     <today-recommend></today-recommend>
     <rank></rank>
     <like></like>
-    <floor v-for="item in floorList" :key="item.id" :list="item"></floor>
+    <floor v-for="floor in floorList" :key="floor.id" :list="floor"></floor>
     <bland></bland>
   </div>
 </template>
