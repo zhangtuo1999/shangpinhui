@@ -1,7 +1,8 @@
-import {getCategoryList} from "@/api";
+import {getBannerList, getCategoryList} from "@/api";
 
 const state = {
-    categoryList: []
+    categoryList: [],
+    bannerList: []
 }
 
 const getters = {}
@@ -9,6 +10,9 @@ const getters = {}
 const mutations = {
     GET_CATEGORY_LIST(state, data) {
         state.categoryList = data
+    },
+    GET_BANNER_LIST(state, data) {
+        state.bannerList = data
     }
 }
 
@@ -16,6 +20,12 @@ const actions = {
     async getCategoryList({commit}) {
         await getCategoryList().then(response => {
             commit('GET_CATEGORY_LIST', response.data)
+        })
+    },
+
+    async getBannerList({commit}) {
+        await getBannerList().then(response => {
+            commit('GET_BANNER_LIST', response.data)
         })
     }
 }
