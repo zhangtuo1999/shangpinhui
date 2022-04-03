@@ -111,7 +111,6 @@ export default {
   },
   watch: {
     bannerList() {
-      console.log('bannerList',this.bannerList)
       this.$nextTick(() => {
         new Swiper(this.$refs.mySwiper, {
           loop: true,

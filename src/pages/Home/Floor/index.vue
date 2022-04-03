@@ -19,7 +19,7 @@
                 <li v-for="(keyword,index) in list.keywords" :key="index">{{ keyword }}</li>
               </ul>
               <!--TODO:这里的图片地址是./开头，item中的地址是/开头。./开头可以用 /开头没法用-->
-              <img :src="list['imgUrl']"/>
+              <img :src="list.imgUrl" />
             </div>
             <div class="floorBanner">
               <div class="swiper-container" id="floor1Swiper" ref='mySwiper'>
@@ -72,7 +72,6 @@ export default {
   name: "Floor",
   props: ['list'],
   mounted() {
-    console.log('list', this.list)
     new Swiper(this.$refs.mySwiper, {
       loop: true,
       pagination: {
