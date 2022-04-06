@@ -18,23 +18,10 @@
               <ul class="jd-list">
                 <li v-for="(keyword,index) in list.keywords" :key="index">{{ keyword }}</li>
               </ul>
-              <!--TODO:这里的图片地址是./开头，item中的地址是/开头。./开头可以用 /开头没法用-->
-              <img :src="list.imgUrl" />
+              <img :src="list.imgUrl"/>
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" id="floor1Swiper" ref='mySwiper'>
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide" v-for="carousel in list['carouselList']" :key="carousel.id">
-                    <!--TODO -->
-                    <img :src="carousel['imgUrl']">
-                  </div>
-                </div>
-                <!-- 如果需要分页器 -->
-                <div class="swiper-pagination"></div>
-                <!-- 如果需要导航按钮 -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+              <carousel :list="list['carouselList']"></carousel>
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
@@ -65,25 +52,9 @@
 </template>
 
 <script>
-import Swiper from "swiper";
-import 'swiper/css/swiper.css'
-
 export default {
   name: "Floor",
   props: ['list'],
-  mounted() {
-    new Swiper(this.$refs.mySwiper, {
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
-    })
-  }
 }
 </script>
 
