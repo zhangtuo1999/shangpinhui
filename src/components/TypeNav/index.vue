@@ -80,7 +80,7 @@ export default {
         } else if (category2id) {
           query.category2Id = category2id
         } else {
-          query.category2Id = category3id
+          query.category3Id = category3id
         }
       }
       const params = this.$route.params
