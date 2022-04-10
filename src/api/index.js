@@ -27,3 +27,11 @@ export const getFloorList = () => {
     })
 }
 
+export const getSearchInfo = (data) => {
+    return request({
+        url: '/list',
+        method: 'post',
+        data
+    })
+}
+
