@@ -83,6 +83,7 @@ export default {
           query.category3Id = category3id
         }
       }
+      // TODO  未解决的bug：搜索栏中有内容 然后点击三级联动菜单 跳转后不会带params 参数
       const params = this.$route.params
       this.$router.push({name: 'search', query, params})
     },

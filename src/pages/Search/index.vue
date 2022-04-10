@@ -11,10 +11,12 @@
             </li>
           </ul>
           <ul class="fl sui-tag">
-            <li class="with-x">手机</li>
-            <li class="with-x">iphone<i>×</i></li>
-            <li class="with-x">华为<i>×</i></li>
-            <li class="with-x">OPPO<i>×</i></li>
+            <li class="with-x" v-if="searchData.categoryName">{{ searchData.categoryName }}
+              <i @click="removeCategoryName">×</i>
+            </li>
+            <li class="with-x" v-if="searchData.keyword">{{ searchData.keyword }}
+              <i @click="removeKeyword">×</i>
+            </li>
           </ul>
         </div>
 
@@ -126,24 +128,26 @@ export default {
   data() {
     return {
       searchData: {
-        category1Id: "",
-        category2Id: "",
-        category3Id: "",
-        categoryName: "",
-        keyword: "",
+        category1Id: undefined,
+        category2Id: undefined,
+        category3Id: undefined,
+        categoryName: undefined,
+        keyword: undefined,
         order: "1:desc",
         pageNo: 1,
-        pageSize: 100,
-        props: [],
-        trademark: "",
+        pageSize: 10,
+        props: undefined,
+        trademark: undefined,
       }
     }
   },
   mounted() {
+    this.generateSearchData()
     this.getData()
   },
   watch: {
     $route() {
+      this.generateSearchData()
       this.getData()
     }
   },
@@ -151,24 +155,25 @@ export default {
     generateSearchData() {
       Object.assign(this.searchData, this.$route.query, this.$route.params)
     },
-    resetSearchData() {
-      this.searchData = {
-        category1Id: "",
-        category2Id: "",
-        category3Id: "",
-        categoryName: "",
-        keyword: "",
-        order: "1:desc",
-        pageNo: 1,
-        pageSize: 100,
-        props: [],
-        trademark: "",
-      }
+    resetSearchDataCategoryId() {
+      this.searchData.category1Id = undefined
+      this.searchData.category2Id = undefined
+      this.searchData.category3Id = undefined
     },
     getData() {
-      this.generateSearchData()
       this.$store.dispatch('search/getSearchInfo', this.searchData)
-      this.resetSearchData()
+      this.resetSearchDataCategoryId()
+    },
+    removeCategoryName() {
+      this.searchData.categoryName = undefined
+      this.getData()
+      this.$router.push({name: 'search', params: this.$route.params})
+    },
+    removeKeyword() {
+      this.searchData.keyword = undefined
+      this.getData()
+      this.$bus.$emit('clear')
+      this.$router.push({name: 'search', query: this.$route.query})
     }
   }
 }
