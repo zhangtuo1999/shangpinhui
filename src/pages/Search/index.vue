@@ -139,7 +139,7 @@ export default {
         order: "1:desc",
         pageNo: 1,
         pageSize: 10,
-        props: undefined,
+        props: [],
         trademark: undefined,
       }
     }
