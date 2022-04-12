@@ -1,19 +1,58 @@
-# shangpinhui
+# Vue 大型电商项目：尚品汇（前台项目）
 
-## Project setup
+## 介绍
+
+该仓库是本人在实战 Vue 电商项目时，跟随教程所写的代码。**目前仍在不断完善**。
+
+* 主要技术：Vue 2.x, Vuex, Vue Router, Vue CLI 和 axios。
+
+* 视频教程地址：[尚硅谷VUE项目实战，前端项目-尚品汇(大型\重磅)](https://www.bilibili.com/video/BV1Vf4y1T7bw)
+
+## 功能
+
+* 主页
+
+  ![image-20220412112045315](../images/README/image-20220412112045315.png)
+
+  ![image-20220412112109047](../images/README/image-20220412112109047.png)
+
+  ![image-20220412112124128](../images/README/image-20220412112124128.png)
+
+* 搜索
+
+  ![image-20220412112136463](../images/README/image-20220412112136463.png)
+
+  ![image-20220412112245794](../images/README/image-20220412112245794.png)
+
+* ... ...
+
+## 准备
+
+1. 安装 node 和 git 环境。
+
+2. 对 ES2015, Vue 2.x, Vuex, Vue Router, Vue CLI 和 axios 有基本的了解。
+
+## 开始
+
 ```
+# 克隆项目
+git clone https://github.com/zhangtuo1999/shangpinhui.git
+
+# 进入项目目录
+cd shangpinhui
+
+# 安装依赖
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+# 运行项目
 npm run serve
 ```
 
-### Compiles and minifies for production
+在浏览器中打开：http://localhost:8080
+
+## 构建
+
 ```
+# 构建项目
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -143,7 +143,7 @@ export default {
         keyword: undefined,
         order: "1:desc",
         pageNo: 1,
-        pageSize: 10,
+        pageSize: 5,
         props: [],
         trademark: undefined,
       }
