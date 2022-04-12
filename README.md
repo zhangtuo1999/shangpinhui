@@ -1,8 +1,4 @@
----
-typora-root-url: images
----
-
-# Vue 大型电商项目：尚品汇（前台项目）
+Vue 大型电商项目：尚品汇（前台项目）
 
 ## 介绍
 
@@ -16,17 +12,17 @@ typora-root-url: images
 
 * 主页
 
-  ![image-20220412112045315](../images/README/image-20220412112045315.png)
+  [![Le10jf.md.png](https://s1.ax1x.com/2022/04/12/Le10jf.md.png)](https://imgtu.com/i/Le10jf)
 
-  ![image-20220412112109047](../images/README/image-20220412112109047.png)
+  [![Le1d3t.md.png](https://s1.ax1x.com/2022/04/12/Le1d3t.md.png)](https://imgtu.com/i/Le1d3t)
 
-  ![image-20220412112124128](../images/README/image-20220412112124128.png)
+  [![Le1wgP.md.png](https://s1.ax1x.com/2022/04/12/Le1wgP.md.png)](https://imgtu.com/i/Le1wgP)
 
 * 搜索
 
-  ![image-20220412112136463](../images/README/image-20220412112136463.png)
+  [![Le1a9I.md.png](https://s1.ax1x.com/2022/04/12/Le1a9I.md.png)](https://imgtu.com/i/Le1a9I)
 
-  ![image-20220412112245794](../images/README/image-20220412112245794.png)
+  [![Le1N4A.md.png](https://s1.ax1x.com/2022/04/12/Le1N4A.md.png)](https://imgtu.com/i/Le1N4A)
 
 * ... ...
 
