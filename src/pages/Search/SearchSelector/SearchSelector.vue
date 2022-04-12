@@ -41,7 +41,7 @@ export default {
       this.$emit('trademarkInfo',trademark)
     },
     handleClickAttr(attr,attrValue){
-      // const data =
+      this.$emit('attrInfo',attr,attrValue)
     }
   }
 }

@@ -20,11 +20,14 @@
             <li class="with-x" v-if="searchData.trademark">{{ searchData.trademark.split(":")[1] }}
               <i @click="removeTrademark">×</i>
             </li>
+            <li class="with-x" v-for="(attrvalue,index) in searchData.props" :key="index">{{ attrvalue.split(":")[1] }}
+              <i @click="removeAttr(index)">×</i>
+            </li>
           </ul>
         </div>
 
         <!--selector-->
-        <SearchSelector @trademarkInfo="trademarkInfo"/>
+        <SearchSelector @trademarkInfo="trademarkInfo" @attrInfo="attrInfo"/>
 
         <!--details-->
         <div class="details clearfix">
@@ -184,6 +187,17 @@ export default {
     },
     removeTrademark() {
       this.searchData.trademark = undefined
+      this.getData()
+    },
+    attrInfo(attr, attrValue) {
+      const props = `${attr.attrId}:${attrValue}:${attr.attrName}`
+      if (this.searchData.props.indexOf(props) === -1) {
+        this.searchData.props.push(props)
+      }
+      this.getData()
+    },
+    removeAttr(index){
+      this.searchData.props.splice(index,1)
       this.getData()
     }
   }
