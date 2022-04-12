@@ -1,3 +1,7 @@
+---
+typora-root-url: images
+---
+
 # Vue 大型电商项目：尚品汇（前台项目）
 
 ## 介绍
