@@ -74,7 +74,7 @@
               </li>
             </ul>
           </div>
-          <div class="fr page">
+          <div class="fr page" v-if="false">
             <div class="sui-pagination clearfix">
               <ul>
                 <li class="prev disabled">
@@ -106,6 +106,7 @@
         </div>
       </div>
     </div>
+    <Pagination></Pagination>
   </div>
 </template>
 
